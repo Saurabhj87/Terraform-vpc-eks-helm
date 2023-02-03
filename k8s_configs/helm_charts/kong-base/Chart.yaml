@@ -1,6 +1,0 @@
-apiVersion: v2
-name: kong-base
-description: Create namespace
-type: application
-version: 1.1.0
-appVersion: "1.1.0"

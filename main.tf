@@ -2,6 +2,14 @@ provider "aws" {
   region = var.region
 }
 
+terraform {
+  backend "s3" {
+    bucket = "dev-backend-my-vpc"
+    key    = "tfstate/tf.tfstate"
+    region = "ap-south-1"
+  }
+}
+
 locals {
   tags = {
 
@@ -9,8 +17,8 @@ locals {
     Name    = "Test-cluster"
   }
 }
+
 module "vpc" {
-  #  source                  = "./modules/vpc"
   source                     = "github.com/Saurabhj87/vnet-tf-module"
   cidr_range                 = "10.0.0.0/16"
   vpc-public-subnet-cidr     = ["10.0.1.0/24", "10.0.2.0/24"]
@@ -30,8 +38,5 @@ module "eks" {
   tags              = local.tags
 }
 
-resource "local_file" "kubeconfig" {
-  content  = module.eks.kubeconfig
-  filename = "/tmp/config"
-}
+
 

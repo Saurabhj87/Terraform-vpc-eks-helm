@@ -23,7 +23,7 @@ resource "helm_release" "namespace" {
   }
 } */
 
-# Kong Config##
+/* # Kong Config##
  resource "helm_release" "kong_base" {
   name  = "kong-base"
   repository = "https://charts.konghq.com"
@@ -32,7 +32,7 @@ resource "helm_release" "namespace" {
   
   values = [jsonencode({})]
 
-  depends_on = [
+  /* depends_on = [
     helm_release.kong_ns
-  ]
-}
+  ] */
+} */
